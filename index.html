@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Vopros VPN</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:var(--tg-theme-bg-color,#fff);--fg:var(--tg-theme-text-color,#111);--hint:var(--tg-theme-hint-color,#707579);
+--btn:var(--tg-theme-button-color,#2f6fe0);--btnfg:var(--tg-theme-button-text-color,#fff);
+--sec:var(--tg-theme-secondary-bg-color,#f1f1f4);--link:var(--tg-theme-link-color,#2f6fe0)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--fg);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+-webkit-tap-highlight-color:transparent}
+#app{max-width:520px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;
+padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;margin-bottom:14px}
+.brand svg{width:26px;height:26px;flex:none}
+.brand span{color:var(--hint);font-weight:500}
+.bar{display:flex;gap:5px;margin-bottom:22px}
+.bar i{flex:1;height:5px;border-radius:3px;background:var(--sec);transition:background .3s}
+.bar i.a{background:var(--btn)}
+.n{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}
+.e{font-size:56px;line-height:1.15;margin:8px 0 4px}
+h1{margin:0 0 10px;font-size:26px;line-height:1.2}
+.sub{color:var(--hint);margin:0 0 6px}
+.l{display:flex;gap:12px;margin:12px 0;font-size:17px;line-height:1.35}
+.l b{flex:none;width:28px;height:28px;border-radius:14px;background:var(--sec);font-size:14px;
+display:flex;align-items:center;justify-content:center}
+.h{margin:14px 0 0;padding:10px 12px;border-radius:12px;background:var(--sec);color:var(--hint);font-size:14px}
+.body{flex:1;animation:in .25s ease}
+@keyframes in{from{transform:translateX(14px)}}
+.act{padding-top:18px}
+button{display:block;width:100%;margin-top:10px;padding:16px 12px;border:0;border-radius:14px;font:inherit;
+font-size:17px;font-weight:600;background:var(--btn);color:var(--btnfg);cursor:pointer;transition:transform .08s}
+button:active{transform:scale(.98)}
+.s{background:var(--sec);color:var(--fg)}
+.g{background:#2ea043;color:#fff}
+.k{background:none;color:var(--link);font-weight:400;font-size:15px;padding:10px}
+.c{text-align:center}
+.big{font-size:84px;line-height:1.2;margin-top:40px;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.2)}}
+@media (prefers-reduced-motion:reduce){.body,.big{animation:none}}
+</style></head>
+<body><div id="app"></div>
+<script>
+var STEPS={"android":[{"i":"📲","t":"Установи приложение Happ","l":["Нажми «Скачать Happ».","Установи приложение.","Вернись сюда и нажми «Готово»."],"h":"Нет Google Play? Нажми «Скачать файлом» и открой скачанный файл.","b":[["⬇️ Скачать Happ","o","https://play.google.com/store/apps/details?id=com.happproxy"],["📦 Скачать файлом","o","https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk"]],"n":"✅ Готово, установил"},{"i":"🔑","t":"Добавь ключ","l":["Нажми «Скопировать ключ».","Открой Happ.","Happ спросит — нажми «Добавить»."],"h":"Happ сам не спросил? Нажми ➕ вверху и выбери «Вставить из буфера обмена».","b":[["📋 Скопировать ключ","c","k"]],"n":"✅ Готово, добавил"},{"i":"🏦","t":"Добавь правило для России","s":"С ним банки, Госуслуги и российские сайты работают как обычно.","l":["Нажми «Скопировать правило».","Открой Happ.","Happ спросит — нажми «Добавить»."],"h":"Happ сам не спросил? Нажми ➕ вверху и выбери «Вставить из буфера обмена».","b":[["📋 Скопировать правило","c","h"]],"n":"✅ Готово, добавил"},{"i":"🟢","t":"Включи VPN","l":["Открой Happ.","Нажми на строчку «🇫🇮 VPN».","Нажми большую круглую кнопку.","Телефон спросит разрешение — нажми «ОК»."],"n":"✅ Включил — проверить"}],"iphone":[{"i":"📲","t":"Установи приложение OneXray","l":["Нажми «Открыть App Store».","Нажми «Загрузить».","Вернись сюда и нажми «Готово»."],"h":"Разработчик должен быть Yuan Dev LLC. Приложения с похожими названиями — подделки.","b":[["⬇️ Открыть App Store","o","https://apps.apple.com/ru/app/onexray/id6745748773"]],"n":"✅ Готово, установил"},{"i":"🔑","t":"Добавь ключ","l":["Нажми «Скопировать ключ».","Открой OneXray и нажми «Серверы» внизу.","Нажми ➕ и выбери «Вставить ссылку»."],"b":[["📋 Скопировать ключ","c","k"]],"n":"✅ Готово, добавил"},{"i":"🏦","t":"Включи правило для России","s":"С ним банки, Госуслуги и российские сайты работают как обычно.","l":["В OneXray открой «Маршрутизация».","Нажми Smart Routing, потом «Изменить».","В строке «Прямой регион» выбери «Россия»."],"n":"✅ Готово, выбрал"},{"i":"🟢","t":"Включи VPN","l":["Нажми на строчку «🇫🇮 VPN».","Нажми кнопку подключения.","iPhone спросит разрешение — нажми «Разрешить»."],"n":"✅ Включил — проверить"}],"windows":[{"i":"💻","t":"Установи программу Happ","l":["Нажми «Скачать Happ».","Открой скачанный файл и установи программу.","Вернись сюда и нажми «Готово»."],"b":[["⬇️ Скачать Happ","o","https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe"]],"n":"✅ Готово, установил"},{"i":"🔑","t":"Добавь ключ","l":["Нажми «Скопировать ключ».","Открой Happ.","Happ спросит — нажми «Добавить»."],"h":"Happ сам не спросил? Нажми ➕ вверху и выбери «Вставить из буфера обмена».","b":[["📋 Скопировать ключ","c","k"]],"n":"✅ Готово, добавил"},{"i":"🏦","t":"Добавь правило для России","s":"С ним банки, Госуслуги и российские сайты работают как обычно.","l":["Нажми «Скопировать правило».","Открой Happ.","Happ спросит — нажми «Добавить»."],"h":"Happ сам не спросил? Нажми ➕ вверху и выбери «Вставить из буфера обмена».","b":[["📋 Скопировать правило","c","h"]],"n":"✅ Готово, добавил"},{"i":"🟢","t":"Включи VPN","l":["Открой Happ.","Нажми на строчку «🇫🇮 VPN».","Нажми большую кнопку включения."],"n":"✅ Включил — проверить"}],"tv":[{"i":"📺","t":"Установи Happ на телевизор","l":["На телевизоре открой Google Play.","Найди приложение Happ и установи его.","Открой Happ на телевизоре."],"n":"✅ Готово, открыл"},{"i":"🔑","t":"Передай ключ с телефона","l":["В Happ на телевизоре выбери Web Import — появится QR-код.","Здесь нажми «Скопировать ключ».","Наведи камеру телефона на QR-код и открой ссылку.","Вставь ключ на открывшейся странице и отправь."],"b":[["📋 Скопировать ключ","c","k"]],"n":"✅ Готово, передал"},{"i":"🎬","t":"Российские кинотеатры — мимо VPN","l":["В Happ на телевизоре открой «Настройки».","Открой «Прокси для выбранных приложений» и включи режим «Обход».","Отметь Кинопоиск, Иви, Okko, Wink, Кион, RUTUBE."],"n":"✅ Готово, отметил"},{"i":"🟢","t":"Включи VPN","l":["В Happ на телевизоре выбери «🇫🇮 VPN».","Нажми кнопку включения."],"n":"✅ Включил — проверить"}]},NAMES={"android": "📱 Телефон Android", "iphone": "🍏 iPhone", "windows": "💻 Компьютер Windows", "tv": "📺 Телевизор"},RULE="happ://routing/onadd/eyJOYW1lIjoi0KDQpCIsIkdsb2JhbFByb3h5IjoidHJ1ZSIsIkRpcmVjdFNpdGVzIjpbImdlb3NpdGU6Y2F0ZWdvcnktcnUiLCJkb21haW46cnUiLCJkb21haW46c3UiXSwiRGlyZWN0SXAiOlsiZ2VvaXA6cHJpdmF0ZSIsImdlb2lwOnJ1Il0sIkRvbWFpblN0cmF0ZWd5IjoiSVBJZk5vbk1hdGNoIn0=";
+var W=window.Telegram&&Telegram.WebApp,A=document.getElementById('app'),D=null,S=[],i=0,fin=false,nb;
+function el(g,c,t,p){var e=document.createElement(g);if(c)e.className=c;if(t)e.textContent=t;(p||A).appendChild(e);return e}
+function bt(t,c,f,p){var b=el('button',c,t,p);b.onclick=f;return b}
+function hap(k){try{k?W.HapticFeedback.notificationOccurred(k):W.HapticFeedback.impactOccurred('light')}catch(e){}}
+function copy(t,b){function ok(){b.textContent='✅ Скопировано';hap('success');if(nb)nb.className='g'}
+  function old(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity=0;
+    document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){b.textContent='Не получилось — скопируй ключ в чате'}a.remove()}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,old);else old()}
+function open_(u){try{W.openLink(u)}catch(e){window.open(u,'_blank')}}
+function go(k){i=k;fin=false;try{sessionStorage.setItem('i',k)}catch(e){};draw();hap()}
+function head(){A.textContent='';var h=el('div','brand');
+  h.innerHTML='<svg viewBox="0 0 64 64"><path d="M10 12l5-5h34l5 5v22c0 12-12 20-22 26C22 54 10 46 10 34z" fill="#2f6fe0"/><text x="32" y="43" font-size="34" font-weight="700" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif">?</text></svg>';
+  el('div',0,'Vopros VPN',h);if(D)el('span',0,'· '+NAMES[D.d],h)}
+function draw(){head();
+  if(!D){var b=el('div','body c');el('div','big','🔒',b);el('h1',0,'Открой мастер из бота',b);
+    el('p','sub','Нажми кнопку «Открыть мастер» в чате с ботом Vopros VPN.',b);
+    bt('Закрыть','s',function(){try{W.close()}catch(e){}},el('div','act'));return}
+  var p=el('div','bar'),k;for(k=0;k<S.length;k++)el('i',k<=i||fin?'a':'',0,p);
+  var b=el('div','body'),a;
+  if(fin){b.className='body c';el('div','big','👍',b);el('h1',0,'Почти всё!',b);
+    el('p','sub','Вернись в чат с ботом и нажми зелёную кнопку «Я включил VPN — проверить». Бот сам увидит подключение.',b);
+    a=el('div','act');bt('✅ Вернуться в чат','g',function(){try{W.close()}catch(e){}},a);
+    bt('← Назад к шагам','k',function(){go(S.length-1)},a);return}
+  var s=S[i];el('div','n','Шаг '+(i+1)+' из '+S.length,b);el('div','e',s.i,b);el('h1',0,s.t,b);
+  if(s.s)el('p','sub',s.s,b);
+  s.l.forEach(function(t,k){var r=el('div','l',0,b);el('b',0,k+1,r);el('span',0,t,r)});
+  if(s.h)el('div','h',s.h,b);
+  a=el('div','act');
+  (s.b||[]).forEach(function(x,k){var e=bt(x[0],k?'s':'',function(){
+    if(x[1]=='o'){open_(x[2]);if(nb)nb.className='g'}else copy(x[2]=='h'?RULE:D[x[2]],e)},a)});
+  nb=bt(s.n.replace(' — проверить',''),s.b?'s':'g',function(){if(i==S.length-1){fin=true;draw();hap('success')}else go(i+1)},a);
+  if(i)bt('← Назад','k',function(){go(i-1)},a)}
+function b64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');var r=atob(s),u=new Uint8Array(r.length);for(var k=0;k<r.length;k++)u[k]=r.charCodeAt(k);return u}
+async function load(){
+  try{W.ready();W.expand()}catch(e){}
+  try{var q=new URLSearchParams(location.search).get('p'),uid=W.initDataUnsafe.user.id;
+    if(q&&uid){var c=b64(q),o=new Uint8Array(c.length),enc=new TextEncoder();
+      for(var blk=0;blk*32<c.length;blk++){
+        var ks=new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode('vopros:'+uid+':'+blk)));
+        for(var k=0;k<32&&blk*32+k<c.length;k++)o[blk*32+k]=c[blk*32+k]^ks[k]}
+      var j=JSON.parse(new TextDecoder().decode(o));if(STEPS[j.d]&&j.k){D=j;S=STEPS[j.d]}}
+    history.replaceState(null,'',location.pathname+location.hash)}catch(e){}
+  try{i=Math.min(+sessionStorage.getItem('i')||0,Math.max(S.length-1,0))}catch(e){}
+  draw()}
+load();
+</script></body></html>
